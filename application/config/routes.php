@@ -50,5 +50,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+$route['admin/amenities'] = 'Amenity';
+$route['admin/amenities/search'] = 'Amenity/search';
+$route['admin/amenities/show'] = 'Amenity/show';
+$route['admin/amenities/show_by'] = 'Amenity/show_by';
+$route['admin/amenities/(:num)'] = 'Amenity/index/$1';
+$route['admin/amenities/create'] = 'Amenity/create';
+$route['admin/amenities/edit/(:num)'] = 'Amenity/edit/$1';
+$route['admin/amenities/delete/(:num)']='Amenity/delete/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
