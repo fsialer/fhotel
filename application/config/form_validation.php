@@ -135,4 +135,50 @@ $config=array(
 				)
 			)
 	),
+	'Room/create'=>array(
+		array(
+			'field'=>'tip_habs',
+			'label'=>'tip_habs',
+			'rules'=>'is_natural_no_zero',
+			'errors'=>array(
+				'is_natural_no_zero'=>'El Tipo de habitación es requerido.'
+				)
+			),
+		array(
+			'field'=>'num_h',
+			'label'=>'num_h',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'El número de habitación es requerido.'
+				)
+			),
+
+
+	),
+	'Room/edit'=>array(
+		array(
+			'field'=>'tip_habs',
+			'label'=>'tip_habs',
+			'rules'=>'is_natural_no_zero',
+			'errors'=>array(
+				'is_natural_no_zero'=>'El Tipo de habitación es requerido.'
+				)
+			),
+		array(
+			'field'=>'num_h',
+			'label'=>'num_h',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'El número de habitación es requerido.'
+				)
+			),
+		array(
+			'field'=>'estado_h',
+			'label'=>'estado_h',
+			'rules'=>'in_list[Disponible,Inactivo]',
+			'errors'=>array(
+				'in_list'=>'El estado del habitación es requerido.'
+				)
+			)
+	),
 );

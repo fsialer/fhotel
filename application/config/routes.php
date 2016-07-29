@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'Migrate';
 $route['admin/amenities'] = 'Amenity';
 $route['admin/amenities/(:num)'] = 'Amenity/index/$1';
 $route['admin/amenities/search'] = 'Amenity/search';
@@ -66,5 +66,13 @@ $route['admin/typesrooms/show_by'] = 'Type_room/show_by';
 $route['admin/typesrooms/create'] = 'Type_room/create';
 $route['admin/typesrooms/edit/(:num)'] = 'Type_room/edit/$1';
 $route['admin/typesrooms/delete/(:num)']='Type_room/delete/$1';
+$route['admin/rooms'] = 'Room';
+$route['admin/rooms/(:num)'] = 'Room/index/$1';
+$route['admin/rooms/search'] = 'Room/search';
+$route['admin/rooms/show'] = 'Room/show';
+$route['admin/rooms/show_by'] = 'Room/show_by';
+$route['admin/rooms/create'] = 'Room/create';
+$route['admin/rooms/edit/(:num)'] = 'Room/edit/$1';
+$route['admin/rooms/delete/(:num)']='Room/delete/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
