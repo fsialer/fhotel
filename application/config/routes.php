@@ -51,13 +51,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['admin/amenities'] = 'Amenity';
+$route['admin/amenities/(:num)'] = 'Amenity/index/$1';
 $route['admin/amenities/search'] = 'Amenity/search';
 $route['admin/amenities/show'] = 'Amenity/show';
 $route['admin/amenities/show_by'] = 'Amenity/show_by';
-$route['admin/amenities/(:num)'] = 'Amenity/index/$1';
 $route['admin/amenities/create'] = 'Amenity/create';
 $route['admin/amenities/edit/(:num)'] = 'Amenity/edit/$1';
 $route['admin/amenities/delete/(:num)']='Amenity/delete/$1';
-
+$route['admin/typesrooms'] = 'Type_room';
+$route['admin/typesrooms/(:num)'] = 'Type_room/index/$1';
+$route['admin/typesrooms/search'] = 'Type_room/search';
+$route['admin/typesrooms/show'] = 'Type_room/show';
+$route['admin/typesrooms/show_by'] = 'Type_room/show_by';
+$route['admin/typesrooms/create'] = 'Type_room/create';
+$route['admin/typesrooms/edit/(:num)'] = 'Type_room/edit/$1';
+$route['admin/typesrooms/delete/(:num)']='Type_room/delete/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

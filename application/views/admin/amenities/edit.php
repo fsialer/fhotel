@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-md-6 center-block panel panel-success  quitar-float">
 		<div class="text-center">
-			<h2>Editar Amenidades</h2>
+			<h2>Editar Amenidades - <?php echo $amenity->name_am;?></h2>
 		</div>
 		<div class="panel-body">
 			<?php echo form_open(base_url().'admin/amenities/edit/'.$amenity->id);?>
@@ -12,7 +12,7 @@
 			</div>
 			<div class="form-group">
 				<label>Estado</label>
-				<?php echo form_dropdown('estado_am',array('Activo'=>'Activo','Inactivo'=>'Inactivo'),set_value('estado_am',$amenity->state_am),array('class'=>'form-control estado_am-select'));?>
+				<?php echo form_dropdown('estado_am',array('','Activo'=>'Activo','Inactivo'=>'Inactivo'),set_value('estado_am',$amenity->state_am),array('class'=>'form-control estado-select'));?>
 				<?php echo form_error('estado_am', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
 			</div>
 			<div class="form-group texto-derecha">

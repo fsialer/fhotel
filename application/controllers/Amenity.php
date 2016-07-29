@@ -8,7 +8,7 @@ class Amenity extends CI_Controller {
 		$this->load->model('Amenities_model');
 	}
 
-	public function index($nropag=FALSE){
+	public function index($numpag=FALSE){
 		$show_by=5;
 		$start=0;
 		$search="";
@@ -18,8 +18,8 @@ class Amenity extends CI_Controller {
 		if ($this->session->userdata("search")) {
 			$search=$this->session->userdata('search');
 		}
-		if ($nropag) {
-			$start=($nropag-1)*$show_by;
+		if ($numpag) {
+			$start=($numpag-1)*$show_by;
 		}
 		$config=array('base_url'=>base_url().'admin/amenities/',
 				'total_rows'=>count($this->Amenities_model->list_amenities($search)), 'per_page'=>$show_by,'uri_segment'=>3,'cur_tag_open'=>'<li class="active"><a href="#">','cur_tag_close'=>'</a></li>','num_tag_open'=>'<li>','num_tag_close'=>'</li>','last_link'=>FALSE,'first_link'=>FALSE,'next_link'=>'&raquo;','next_tag_open'=>'<li>','next_tag_close'=>'</li>','prev_link'=>'&laquo;','prev_tag_open'=>'<li>','prev_tag_close'=>'</li>','use_page_numbers'=>TRUE
