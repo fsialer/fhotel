@@ -44,7 +44,7 @@
 		<div class="table-responsive">
 			
 			<p>Mostrar por: <?php echo form_dropdown('show_byth',array('5'=>'5','10'=>'10'),set_value('show_by',$this->session->userdata("quantity")),array('class'=>'show_byth'));?></p>			
-			<table class="table table-striped">
+			<table class="table table-hover">
 				<tr>
 					<th>Tipo de habitación</th>
 					<th>Descripción</th>

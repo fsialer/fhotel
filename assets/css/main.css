@@ -5,3 +5,12 @@
 .texto-derecha{
 	text-align:right;
 }
+.icon-grande{
+	font-size: xx-large;
+}
+.letra-media{
+	font-size: x-large;
+}
+.quitar-align{
+	text-align: justify;
+}

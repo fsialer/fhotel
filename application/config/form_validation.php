@@ -181,4 +181,132 @@ $config=array(
 				)
 			)
 	),
+	'Front/reservation'=>array(
+		array(
+			'field'=>'finicio_re',
+			'label'=>'finicio_re',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'La fecha de inicio es requerido.'
+				)
+			),
+		array(
+			'field'=>'ffin_re',
+			'label'=>'ffin_re',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'La fecha de fin es requerido.'
+				)
+			),
+
+	),
+	'Front/shopping_cart'=>array(
+		array(
+			'field'=>'quantity',
+			'label'=>'quantity',
+			'rules'=>'required|numeric|is_natural_no_zero',
+			'errors'=>array(
+				'required'=>'La cantidad de habitaciones es requerida.',
+				'numeric'=>'Tienes que ser de tipi numérico',
+				'is_natural_no_zero'=>'Tiene que ser mayor a cero'
+				)
+			)
+	),
+	'User/register'=>array(
+		array(
+			'field'=>'nom_us',
+			'label'=>'nom_us',
+			'rules'=>'required|max_length[80]',
+			'errors'=>array(
+				'required'=>'El nombre del usuario es requerida.',
+				'max_length'=>'El nombre del usuario se excedio de su capacidad'
+				)
+			),
+		array(
+			'field'=>'ape_us',
+			'label'=>'ape_us',
+			'rules'=>'required|max_length[80]',
+			'errors'=>array(
+				'required'=>'El apellido del usuario es requerida.',
+				'max_length'=>'El apellido del usuario se excedio de su capacidad'
+				)
+			),
+		array(
+			'field'=>'doc_us',
+			'label'=>'doc_us',
+			'rules'=>'required|max_length[20]|is_unique[users.document_us]',
+			'errors'=>array(
+				'required'=>'El documento del usuario es requerida.',
+				'max_length'=>'El documento del usuario se excedio de su capacidad',
+				'is_unique'=>'El documento ya esta siendo usado'
+				)
+			),
+		array(
+			'field'=>'dir_us',
+			'label'=>'dir_us',
+			'rules'=>'required|max_length[80]',
+			'errors'=>array(
+				'required'=>'El nombre del usuario es requerida.',
+				'max_length'=>'El nombre del usuario se excedio de su capacidad'
+				)
+			),
+		array(
+			'field'=>'email_us',
+			'label'=>'email_us',
+			'rules'=>'required|max_length[50]|is_unique[users.email_us]|valid_email',
+			'errors'=>array(
+				'required'=>'El email del usuario es requerida.',
+				'max_length'=>'El email del usuario se excedio de su capacidad',
+				'is_unique'=>'El email ya esta siendo usado',
+				'valid_email'=>'El email no es válido'
+				)
+			),
+		array(
+			'field'=>'telf_us',
+			'label'=>'telf_us',
+			'rules'=>'required|max_length[30]',
+			'errors'=>array(
+				'required'=>'El telefono del usuario es requerida.',
+				'max_length'=>'El telefono del usuario se excedio de su capacidad',
+				)
+			),
+		array(
+			'field'=>'pass_us',
+			'label'=>'pass_us',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'El nombre del usuario es requerida.',
+				'max_length'=>'El nombre del usuario se excedio de su capacidad'
+				)
+			),
+		array(
+			'field'=>'rpass_us',
+			'label'=>'rpass_us',
+			'rules'=>'required|matches[pass_us]',
+			'errors'=>array('required'=>'La repeticion de la nueva contraseña es requerido.','matches'=>'La nueva contraseña no coincide')
+			)
+	),
+	'User/auth'=>array(
+		array(
+			'field'=>'email_us',
+			'label'=>'email_us',
+			'rules'=>'required|max_length[50]|valid_email',
+			'errors'=>array(
+				'required'=>'El email del usuario es requerida.',
+				'max_length'=>'El email del usuario se excedio de su capacidad',
+				'valid_email'=>'El email no es válido'
+				)
+			),
+		array(
+			'field'=>'pass_us',
+			'label'=>'pass_us',
+			'rules'=>'required',
+			'errors'=>array(
+				'required'=>'El nombre del usuario es requerida.',
+				'max_length'=>'El nombre del usuario se excedio de su capacidad'
+				)
+			),
+		
+	),
+
 );

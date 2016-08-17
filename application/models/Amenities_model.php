@@ -14,8 +14,15 @@ class Amenities_model extends CI_Model{
 		$this->db->order_by('id','DESC');
 		$query=$this->db->get('amenities');
 		$amenities=$query->result();
-		return $amenities;
-		
+		return $amenities;		
+	}
+
+	public function filter_amenities(){
+		$this->db->select("amenities.id,amenities.name_am,detail_tram.typeroom_id,detail_tram.amenity_id");
+		$this->db->join('amenities','detail_tram.amenity_id=amenities.id','inner');
+		$query=$this->db->get('detail_tram');
+		$amenities=$query->result();
+		return $amenities;		
 	}
 
 	public function add($data){
