@@ -20,6 +20,11 @@ $(document).ready(function(){
 		allow_single_deselect: true,
 		disable_search:true
 	});
+	$('.show_byres').chosen({
+		width: "10%",
+		allow_single_deselect: true,
+		disable_search:true
+	});
 	$('.amenidades-select').chosen({
 		width: "100%",
 		placeholder_text_multiple:"Elija las amenidades que desee.",
@@ -91,6 +96,17 @@ $(document).ready(function(){
 			data:{quantity:selected},
 			success:function(){
 				window.location.href="http://localhost/fconsulting/fhotel/admin/rooms";
+			}
+		});
+	});
+	$(".show_byres").change(function(){
+		var selected=$(this).val();
+		$.ajax({
+			url:"http://localhost/fconsulting/fhotel/admin/reservations/show_by",
+			type:"POST",
+			data:{quantity:selected},
+			success:function(){
+				window.location.href="http://localhost/fconsulting/fhotel/admin/reservations";
 			}
 		});
 	});

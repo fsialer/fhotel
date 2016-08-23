@@ -6,6 +6,22 @@ class Reservations_model extends CI_Model{
 	public function __construct()	{
 		parent::__construct();
 	}
+
+	public function list_reservations($search,$start=FALSE,$show_by=FALSE){
+		$this->db->select("users.name_us,users.surname_us,users.document_us,reservations.id,reservations.datestart_re,reservations.dateend_re");
+		$this->db->like('users.document_us',$search);
+		if ($start !== FALSE && $show_by !== FALSE) {
+			$this->db->limit($show_by,$start);
+		}
+		$this->db->join('stays','reservations.id=stays.reservation_id','inner');
+		$this->db->join('users','stays.user_id=users.id','inner');
+		$this->db->where(array('reservations.state_re'=>'Reservado'));
+		$this->db->order_by('reservations.id','DESC');
+		$query=$this->db->get('reservations');
+		$reservations=$query->result();
+		return $reservations;	
+
+	}
 	
 	public function add($data){
 		$data_re=$data['reserva'];
@@ -17,7 +33,7 @@ class Reservations_model extends CI_Model{
 		$this->db->insert('stays',$stay);
 		$detre;
 		foreach ($data_detre as $data_dt) {
-			$detre[]=array('quantity_dtrr'=>$data_dt['quantity'],'typeroom_id'=>$data_dt['typeroom_id'],'reservation_id'=>$reserva_id);
+			$detre[]=array('quantity_dtrr'=>$data_dt['quantity'],'typeroom_id'=>$data_dt['typeroom_id'],'reservation_id'=>$reserva_id,'subtotal_dtrr'=>$data_dt['subtotal']);
 		}
 		$this->db->insert_batch('detail_trre', $detre);
 		
@@ -34,6 +50,24 @@ class Reservations_model extends CI_Model{
 		$query=$this->db->get('types_rooms');
 		$result=$query->result();
 		return $result;
+	}
+
+	public function list_reservation_pay($data){
+		$this->db->select("users.name_us,users.surname_us,users.document_us,reservations.id,reservations.datestart_re,reservations.dateend_re,stays.quantity_stay");
+		$this->db->where(array('reservations.id'=>$data));
+		$this->db->join('stays','reservations.id=stays.reservation_id','inner');
+		$this->db->join('users','stays.user_id=users.id','inner');
+		$this->db->where(array('reservations.state_re'=>'Reservado'));
+		$query=$this->db->get('reservations');
+		$reservation=$query->row();
+		$this->db->select("types_rooms.name_tr,types_rooms.price_tr,detail_trre.quantity_dtrr,detail_trre.subtotal_dtrr");
+		$this->db->where(array('detail_trre.reservation_id'=>$data));
+		$this->db->join('types_rooms','detail_trre.typeroom_id=types_rooms.id','inner');		
+		$query=$this->db->get('detail_trre');
+		$detalle_reserva=$query->result();
+		$array_data=array('reserva'=>$reservation,'detalle'=>$detalle_reserva);
+		return $array_data;
+			
 	}
 	
 	

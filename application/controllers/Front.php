@@ -51,11 +51,11 @@ class Front extends CI_Controller {
 		if ($this->session->userdata('detail_reservate')) {
 			$reserva=$this->session->userdata('detail_reservate');
 			$reserva[$this->input->post('typeroom_id')]=array('quantity'=>$this->input->post('quantity'),'typeroom_id'=>$this->input->post('typeroom_id'),
-				'typesrooms_name'=>$this->input->post('typesrooms_name'),'typesrooms_price'=>$this->input->post('typesrooms_price'));
+				'typesrooms_name'=>$this->input->post('typesrooms_name'),'typesrooms_price'=>$this->input->post('typesrooms_price'),'subtotal'=>$this->input->post('quantity')*$this->input->post('typesrooms_price'));
 			$this->session->set_userdata('detail_reservate',$reserva);
 		}else{
 			$reserva=array($this->input->post('typeroom_id')=>array('quantity'=>$this->input->post('quantity'),'typeroom_id'=>$this->input->post('typeroom_id'),
-			'typesrooms_name'=>$this->input->post('typesrooms_name'),'typesrooms_price'=>$this->input->post('typesrooms_price')));
+			'typesrooms_name'=>$this->input->post('typesrooms_name'),'typesrooms_price'=>$this->input->post('typesrooms_price'),'subtotal'=>$this->input->post('quantity')*$this->input->post('typesrooms_price')));
 			$this->session->set_userdata('detail_reservate',$reserva);
 		}		
 			$this->load->view('front/reservations/cart');
