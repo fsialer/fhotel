@@ -20,10 +20,26 @@ $(document).ready(function(){
 		allow_single_deselect: true,
 		disable_search:true
 	});
+	$('.show_byh2').chosen({
+		width: "10%",
+		allow_single_deselect: true,
+		disable_search:true
+	});
 	$('.show_byres').chosen({
 		width: "10%",
 		allow_single_deselect: true,
 		disable_search:true
+	});
+	$('.habitaciones-select').chosen({
+		width: "100%",
+		placeholder_text_multiple:"Elija las habitaciones que desee.",
+		no_results_text:"No se encuentran resultados con"
+	});
+	$('.habitaciones2-select').chosen({
+		width: "100%",
+		placeholder_text_multiple:"Elija las habitaciones que desee.",
+		no_results_text:"No se encuentran resultados con",
+		max_selected_options:$('.cantidad_h').val()
 	});
 	$('.amenidades-select').chosen({
 		width: "100%",
@@ -96,6 +112,17 @@ $(document).ready(function(){
 			data:{quantity:selected},
 			success:function(){
 				window.location.href="http://localhost/fconsulting/fhotel/admin/rooms";
+			}
+		});
+	});
+	$(".show_byh2").change(function(){
+		var selected=$(this).val();
+		$.ajax({
+			url:"http://localhost/fconsulting/fhotel/admin/rooms/give/show_by2",
+			type:"POST",
+			data:{quantity:selected},
+			success:function(){
+				window.location.href="http://localhost/fconsulting/fhotel/admin/rooms/give";
 			}
 		});
 	});

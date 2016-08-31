@@ -69,6 +69,31 @@ class Reservations_model extends CI_Model{
 		return $array_data;
 			
 	}
+
+	public function list_rooms_give($search,$start=FALSE,$show_by=FALSE){
+   		$this->db->select("users.name_us,users.surname_us,users.document_us,reservations.id,reservations.datestart_re,reservations.dateend_re,types_rooms.name_tr,detail_trre.typeroom_id,detail_trre.quantity_dtrr,detail_trre.id as detail_trre_id");
+		$this->db->like('users.document_us',$search);
+		if ($start !== FALSE && $show_by !== FALSE) {
+			$this->db->limit($show_by,$start);
+		}
+		$this->db->where(array('reservations.state_re'=>'Pagado','detail_trre.state_dtrr'=>'Pendiente'));
+		$this->db->join('stays','reservations.id=stays.reservation_id','inner');
+		$this->db->join('users','stays.user_id=users.id','inner');
+		$this->db->join('detail_trre','reservations.id=detail_trre.reservation_id','inner');
+		$this->db->join('types_rooms','detail_trre.typeroom_id=types_rooms.id','inner');
+		$query=$this->db->get('reservations');
+		$rooms=$query->result();
+		return $rooms;		
+   }
+
+   public function show_reservation($data){
+   		$this->db->select("detail_trre.id,detail_trre.reservation_id,types_rooms.name_tr,detail_trre.typeroom_id,detail_trre.quantity_dtrr");
+		$this->db->where(array('detail_trre.id'=>$data['detail_trre_id']));
+		$this->db->join('types_rooms','detail_trre.typeroom_id=types_rooms.id','inner');
+		$query=$this->db->get('detail_trre');
+		$room=$query->row();
+		return $room;
+	}
 	
 	
 	

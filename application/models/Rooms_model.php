@@ -35,9 +35,28 @@ class Rooms_model extends CI_Model{
 
 	public function delete_room($id){
    		$this->db->where(array('id'=>$id));
-   		$this->db->delete('rooms');
-   		
+   		$this->db->delete('rooms');   		
    }
+
+   public function add_room_asign($data){
+   		foreach ($data['room_id'] as $room) {
+   			$data_new=array('detail_trre_id'=>$data['detail_trre_id'],'room_id'=>$room);
+   			$this->db->insert('detail_asig_rooms',$data_new);
+   		}
+   		$this->db->set('detail_trre.state_dtrr','Asignado');
+   		$this->db->where(array('detail_trre.id'=>$data['detail_trre_id']));
+   		$this->db->update('detail_trre');
+
+   		foreach ($data['room_id'] as $room) {
+	   		$this->db->set('rooms.state_r','Ocupado');
+	   		$this->db->where(array('rooms.id'=>$room));
+	   		$this->db->update('rooms');
+   		}
+   }
+
+  
+
+
 
 
 }
